@@ -40,17 +40,20 @@
 				<div>
 					<h1 id="banner">Stumblr!</h1>
                 </div>
-                <div class="btn-toolbar">
-                    <div class="btn-group">
-                        <button class="btn btn-primary">Stumbl</button>
-                    </div>
+                <form name="form" method="POST" action="/stumbl">
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                                <button class="btn btn-primary" type="submit">Stumbl</button>
+                            </form>
+                        </div>
 
-                    <div class="btn-group">
-                        <button class="btn btn-success">Like</button>
-                        <button class="btn btn-danger">Dislike</button>
-                        <button class="btn btn-inverse">Add to favorites</button>
+                        <div class="btn-group">
+                            <button class="btn btn-success" type='button' id='like'>Like</button>
+                            <button class="btn btn-danger" type='button' id='dislike'>Dislike</button>
+                            <button class="btn btn-inverse" type='button' id='favorites'>Add to favorites</button>
+                        </div>
                     </div>
-                </div>
+                </form>
 
 			</header>
 
