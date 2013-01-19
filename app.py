@@ -13,13 +13,9 @@ def main_page():
 
 @app.route('/stumbl', methods=['POST', 'GET'])
 def stumbl():
-    with open('templates/stumbl.html', 'w') as page:
-        with open('templates/index.html', 'r') as original:
-            #Do string shit to replace iframe url
-            replacement = original.read()
-            replacement = replacement.replace("http://tumblr.com", backend.getNextUrl())
-            page.write(replacement)
-	return render_template('stumbl.html')
+    url = backend.getNextUrl()
+    print url
+    return render_template('stumbl.html', url = url)
 
 @app.route('/test', methods=['POST', 'GET'])
 def test():
