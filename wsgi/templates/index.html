@@ -27,7 +27,8 @@
 	    });
 
 	    // Additional init code here
-	    FB.getLoginStatus(function(response) {
+	    FB.Event.subscribe('auth.statusChange', 
+            function(response) {
 
                  // connected
 	         if (response.status === 'connected') {
@@ -56,7 +57,7 @@
 	    FB.login(function(response) {
 		    // connected
 		if (response.authResponse) {
-                     location.reload();
+//                     location.reload();
 		} else {
 		    // cancelled
 		}
