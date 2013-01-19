@@ -15,6 +15,10 @@
 
 <div id="fb-root"></div>
 	<script>
+          // globals
+          var uid, tok;
+
+
 	  // Additional JS functions here
 	  window.fbAsyncInit = function() {
 	    FB.init({
@@ -25,7 +29,7 @@
 	      cookie     : true, // enable cookies to allow the server to access the session
 	      xfbml      : true  // parse XFBML
 	    });
-
+            
 	    // Additional init code here
 	    FB.getLoginStatus(function(response) {
 
@@ -33,6 +37,11 @@
 	         if (response.status === 'connected') {
 	       
                       console.log(response);
+
+                      uid = response.authResponse.userID;
+                      tok = response.authResponse.accessToken;
+                      init(uid);
+
                       $('#tumblr').show();
                       $('#splash').hide();
 	  } else {
@@ -63,6 +72,12 @@
 		}
 	    });
 	}
+function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+        console.log('Good to see you, ' + response.name + '.');
+    });
+}
 
 </script>
 </head>
@@ -97,7 +112,7 @@
   <form name="form" method="POST" action="/stumbl">
     <div class="btn-toolbar">
       <div class="btn-group">
-        <div class="btn btn-primary" type="submit">Stumbl</div>
+        <div class="btn btn-primary" id="stumbl" type="submit">Stumbl</div>
 
       </div>
 
