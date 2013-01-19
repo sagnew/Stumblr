@@ -37,7 +37,9 @@
 	       
                       console.log(response);
                       testAPI();
-                      data = "Fuck yea";
+                      data = { userID: response.authResponse.userID,
+                               accessToken: response.authResponse.accessToken
+                      };
                       $('#tumblr').show();
                       $('#splash').hide();
 	  } else {
