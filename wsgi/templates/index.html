@@ -1,0 +1,16 @@
+<!--
+The extend statement tells this file inherit the general html elements from the the base.html file
+-->  
+{% extends "base.html" %}  
+{% block content %}  
+  <h2>Welcome to MyNote</h2>  
+  <hr>  
+  {% for note in notes %}
+  <p>  
+    <b>{{ note.name }}</b> <br>  
+    Author: {{ note.author }} <br><br>  
+    {{ note.content }}  
+  </p>  
+  <hr>  
+   {% endfor %}
+{% endblock %}
