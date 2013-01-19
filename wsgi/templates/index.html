@@ -16,7 +16,7 @@
 <div id="fb-root"></div>
 	<script>
           // globals
-          var uid, tok;
+
 
 
 	  // Additional JS functions here
@@ -37,10 +37,7 @@
 	         if (response.status === 'connected') {
 	       
                       console.log(response);
-
-                      uid = response.authResponse.userID;
-                      tok = response.authResponse.accessToken;
-
+                      testAPI();
 
                       $('#tumblr').show();
                       $('#splash').hide();
@@ -77,7 +74,7 @@ function testAPI() {
     FB.api('/me', function(response) {
         console.log('Good to see you, ' + response.name + '.');
     });
-    testAPI();
+
 }
 
 </script>
