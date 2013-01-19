@@ -13,7 +13,12 @@ def main_page():
 
 @app.route('/stumbl', methods=['POST', 'GET'])
 def stumbl():
-	return render_template('index.html')
+    with open('templates/stumbl.html', 'w') as page:
+        with open('index.html') as original:
+            #Do string shit to replace iframe url
+            replacement = original.read().replace("", "")
+
+	return render_template('stumbl.html')
 
 @app.route('/test', methods=['POST', 'GET'])
 def test():
