@@ -1,16 +1,142 @@
-<!--
-The extend statement tells this file inherit the general html elements from the the base.html file
--->  
-{% extends "base.html" %}  
-{% block content %}  
-  <h2>Welcome to MyNote</h2>  
-  <hr>  
-  {% for note in notes %}
-  <p>  
-    <b>{{ note.name }}</b> <br>  
-    Author: {{ note.author }} <br><br>  
-    {{ note.content }}  
-  </p>  
-  <hr>  
-   {% endfor %}
-{% endblock %}
+<!DOCTYPE>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+		<title>Stumblr</title>
+
+		<link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css" media="screen" title="master" charset="utf-8">
+		<link rel="stylesheet" href="/static/css/bootstrap-responsive.css" type="text/css" media="screen" title="master" charset="utf-8">
+		<link rel="stylesheet" href="/static/css/user.css" type="text/css" media="screen" title="master" charset="utf-8">
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.min.js"></script>
+        <script type='text/javascript' src="/static/script.js"></script>
+	<script src="/static/jquery.js"></script>
+
+
+  <div id="fb-root"></div>
+	<script>
+	  // Additional JS functions here
+	  window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '290104991112550', // App ID
+	      channelUrl : 'http://morning-thicket-8197.herokuapp.com', // Channel File
+
+	      status     : true, // check login status
+	      cookie     : true, // enable cookies to allow the server to access the session
+	      xfbml      : true  // parse XFBML
+	    });
+
+	    // Additional init code here
+	    FB.getLoginStatus(function(response) {
+		 alert("bob");
+	  if (response.status === 'connected') {
+	    // connected
+	  } else if (response.status === 'not_authorized') {
+	    // not_authorized
+	  } else {
+        // not_logged_in
+	  }
+	 });
+	  };
+
+	  // Load the SDK Asynchronously
+	  (function(d){
+	     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement('script'); js.id = id; js.async = true;
+	     js.src = "//connect.facebook.net/en_US/all.js";
+	     ref.parentNode.insertBefore(js, ref);
+	   }(document));
+
+	function login() {
+	    FB.login(function(response) {
+		if (response.authResponse) {
+		    // connected
+		} else {
+		    // cancelled
+		}
+	    });
+	}
+
+	</script>
+    </head>
+
+	<body>
+		<div class="container">
+			<!-- Modal -->
+			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			    <h3 id="myModalLabel">Spend time stumbling across interesting Tumblr posts!</h3>
+			  </div>
+			  <div class="modal-body">
+			    <p><label for="username">Username</label><input type="text" name="username" value=""
+						placeholder="Enter username" id="username">
+			    </p>
+					<p><label for="password">Password</label><input type="password" name="password" value=""
+						placeholder="Enter password" id="password">
+					</p>
+			  </div>
+			  <div class="modal-footer">
+			    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			    <button class="btn btn-primary">Save changes</button>
+			  </div>
+			</div>
+
+			<header class="row">
+				<div>
+					<h1 id="banner">Stumblr!</h1>
+                </div>
+                <form name="form" method="POST" action="/stumbl">
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                                <button class="btn btn-primary" type="submit">Stumbl</button>
+                            </form>
+                        </div>
+
+                        <div class="btn-group">
+                            <button class="btn btn-success" type='button' id='like'>Like</button>
+                            <button class="btn btn-danger" type='button' id='dislike'>Dislike</button>
+                            <button class="btn btn-inverse" type='button' id='favorites'>Add to favorites</button>
+                        </div>
+                    </div>
+                </form>
+
+			</header>
+
+			<nav id="primary-navigation" class="row">
+				<div class="tabbable">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#display" data-toggle="tab" id='display_tab' class='tab_link'>Home</a></li>
+						<li><a href="#tab3" data-toggle="tab" class='tab_link'>About</a></li>
+						<li><a href="#tab4" data-toggle="tab" class='tab_link'>Contact Us</a></li>
+					</ul>
+				</div>
+			</nav>
+
+			<section class="row">
+				<article class="tab-content">
+
+					<div class="tab-pane active" id="display">
+						<iframe sandbox="allow-forms allow-scripts" src="http://tmblr.co/ZPVkJuc6heiZ" height="100%" width="100%"></iframe>
+
+					</div>
+
+					<div class="tab-pane" id="tab3">
+						This is tab3 content.
+					</div>
+
+					<div class="tab-pane" id="tab4">
+						This is tab4 content.
+					</div>
+				</article>
+
+			</section>
+
+		</div>
+
+		<script src="/static/js/vendor/jquery-1.8.2.min.js" type="text/javascript"></script>
+		<script src="/static/js/bootstrap/bootstrap.js" type="text/javascript"></script>
+	</body>
+</html>
