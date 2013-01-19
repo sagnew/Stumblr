@@ -31,10 +31,11 @@
 
 	         if (response.status === 'connected') {
 	              // connected
-                     alert(response);
-
+console.log(response);
+$('#fblogin').hide();
 	  } else {
                // not_logged_in, show
+               $('#tumblr').hide();
                alert("not logged in!");
 	  }
 	 });
@@ -126,7 +127,7 @@
   <article class="tab-content">
 
     <div class="tab-pane active" id="display">
-      <iframe sandbox="allow-forms allow-scripts" src="http://tmblr.co/ZPVkJuc6heiZ" height="100%" width="100%"></iframe>
+      <iframe id="tumblr" sandbox="allow-forms allow-scripts" src="http://tmblr.co/ZPVkJuc6heiZ" height="100%" width="100%"></iframe>
 
     </div>
 
