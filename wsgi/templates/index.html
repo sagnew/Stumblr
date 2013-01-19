@@ -16,8 +16,7 @@
 <div id="fb-root"></div>
 	<script>
           // globals
-
-
+          var data;
 
 	  // Additional JS functions here
 	  window.fbAsyncInit = function() {
@@ -38,7 +37,7 @@
 	       
                       console.log(response);
                       testAPI();
-
+                      data = "Fuck yea";
                       $('#tumblr').show();
                       $('#splash').hide();
 	  } else {
@@ -74,6 +73,10 @@ function testAPI() {
     FB.api('/me', function(response) {
         console.log('Good to see you, ' + response.name + '.');
     });
+    $('#stumbl').click( function(){
+    	alert(data);
+    });
+
 
 }
 

@@ -36,9 +36,9 @@ $(document).ready(function(){
         login();
     });
 
-    $('#stumbl').click( function(){
-	alert(userid);
-    });
+    // $('#stumbl').click( function(){
+    // 	alert(userid);
+    // });
     var userid, tok;
     function init(id)
     {
