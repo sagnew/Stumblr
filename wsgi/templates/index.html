@@ -29,14 +29,16 @@
 	    // Additional init code here
 	    FB.getLoginStatus(function(response) {
 
+                 // connected
 	         if (response.status === 'connected') {
-	              // connected
-console.log(response);
-$('#fblogin').hide();
+	       
+                      console.log(response);
+                      $('#tumblr').show();
+                      $('#splash').hide();
 	  } else {
                // not_logged_in, show
                $('#tumblr').hide();
-               alert("not logged in!");
+               $('#splash').show();
 	  }
 	 });
 	  };
@@ -103,9 +105,8 @@ $('#fblogin').hide();
         <div class="btn btn-inverse" type="button" id="favorites">Add to favorites</div>
       </div>
 
-      <div class="btn-group">
-        <div class="btn btn-success" type="button" id="fblogin">FB Login</div>
-      </div>
+
+
 
 
     </div>
@@ -128,7 +129,12 @@ $('#fblogin').hide();
 
     <div class="tab-pane active" id="display">
       <iframe id="tumblr" sandbox="allow-forms allow-scripts" src="http://tmblr.co/ZPVkJuc6heiZ" height="100%" width="100%"></iframe>
-
+      <div id="splash">
+        <center>
+          <h1>Welcome to Stumblr!</h1>
+          <div class="btn btn-large btn-primary" type="button" id="fblogin">Login Using Facebook!</div>
+        </center>
+      </div>
     </div>
 
     <div class="tab-pane" id="tab3">
