@@ -9,14 +9,66 @@
 		<link rel="stylesheet" href="css/bootstrap-responsive.css" type="text/css" media="screen" title="master" charset="utf-8">
 		<link rel="stylesheet" href="css/user.css" type="text/css" media="screen" title="master" charset="utf-8">
         <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.min.js"></script>
-        <script type='text/javascript' src="script.js"></script>
+        <script type='text/javascript' src="/static/script.js"></script>
 
     </head>
 
 	<body>
           <div id="fb-root"></div>
-          <script type="text/javascript" src="fb.js"></script>
+          <script type="text/javascript" src="/static/jquery.js"></script>
+          <script>
+// Additional JS functions here
+window.fbAsyncInit = function() {
+    FB.init({
+	appId      : '290104991112550', // App ID
+	channelUrl : 'http://stumblr-pennapps.herokuapp.com', // Channel File
+	status     : true, // check login status
+	cookie     : true, // enable cookies to allow the server to access the session
+	xfbml      : true  // parse XFBML
+    });
+    
+    // Additional init code here
+    FB.getLoginStatus(function(response) {
+	if (response.status === 'connected') {
+	    // connected
+	    alert("connected init!");
+	} else if (response.status === 'not_authorized') {
+	    // not_authorized
+	    alert("not_authorized!");
+	} else {
+	    // not_logged_in
+	    alert("not_logged_in, so logging in...");
+	    login();
+	}
+    });   
+};
 
+// Load the SDK Asynchronously
+(function(d){
+    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement('script'); js.id = id; js.async = true;
+    js.src = "//connect.facebook.net/en_US/all.js";
+    ref.parentNode.insertBefore(js, ref);
+}(document));
+
+function login() {
+    FB.login(function(response) {
+        if (response.authResponse) {
+            // connected
+	    alert("connected!");
+        } else {
+            // cancelled
+	    alert("not connected!");
+        }
+    });
+}
+
+login();
+
+          </script>
+
+          
 		<div class="container">
 			<!-- Modal -->
 			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
@@ -41,15 +93,16 @@
 
 			<header class="row">
 				<div>
-					<h1 id="banner">Stumblr!</h1>
-                </div>
-                <form name="form" method="POST" action="/stumbl">
-                    <div class="btn-toolbar">
-                        <div class="btn-group">
-                                <button class="btn btn-primary" type="submit">Stumbl</button>
-                            </form>
-                        </div>
-
+				  <h1 id="banner">Stumblr!</h1>
+                                </div>
+                                <form name="form" method="POST" action="/stumbl">
+                                  <div class="btn-toolbar">
+                                    <div class="btn-group">
+                                      <button class="btn btn-primary" type="submit">Stumbl</button>
+                                      <button class="btn btn-primary" type="submit" id="fblogin">Login</button>
+                                    </div>
+                                </form>
+                                
                         <div class="btn-group">
                             <button class="btn btn-success" type='button' id='like'>Like</button>
                             <button class="btn btn-danger" type='button' id='dislike'>Dislike</button>
