@@ -1,7 +1,8 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-from flask import redirect
+from flask import redirect, url_for
+
 import os
 
 app = Flask(__name__)
@@ -12,7 +13,12 @@ def main_page():
 
 @app.route('/stumbl', methods=['POST', 'GET'])
 def stumbl():
-    return render_template('index.html')
+	return render_template('index.html')
+
+@app.route('/test', methods=['POST', 'GET'])
+def test():
+	return render_template('test.html')
+
 
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT",5000))
