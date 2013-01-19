@@ -31,4 +31,9 @@ $(document).ready(function(){
         alert('Placeholder');
     });
 
+    $('#fblogin').click( function(){
+        // Login to facebook!
+        login();
+    });
+
 });

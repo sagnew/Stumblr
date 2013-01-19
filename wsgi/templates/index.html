@@ -19,7 +19,7 @@
 	  window.fbAsyncInit = function() {
 	    FB.init({
 	      appId      : '290104991112550', // App ID
-	      channelUrl : 'http://morning-thicket-8197.herokuapp.com', // Channel File
+	      channelUrl : 'http://app-stumblr.rhcloud.com/stumbl',  // Channel File
 
 	      status     : true, // check login status
 	      cookie     : true, // enable cookies to allow the server to access the session
@@ -28,7 +28,7 @@
 
 	    // Additional init code here
 	    FB.getLoginStatus(function(response) {
-		 alert("bob");
+
 	  if (response.status === 'connected') {
 	    // connected
 	  } else if (response.status === 'not_authorized') {
@@ -91,15 +91,21 @@
                 <form name="form" method="POST" action="/stumbl">
                     <div class="btn-toolbar">
                         <div class="btn-group">
-                                <button class="btn btn-primary" type="submit">Stumbl</button>
-                            </form>
+                                <div class="btn btn-primary" type="submit">Stumbl</div>
+
                         </div>
 
                         <div class="btn-group">
-                            <button class="btn btn-success" type='button' id='like'>Like</button>
-                            <button class="btn btn-danger" type='button' id='dislike'>Dislike</button>
-                            <button class="btn btn-inverse" type='button' id='favorites'>Add to favorites</button>
+                            <div class="btn btn-success" type="button" id="like">Like</div>
+                            <div class="btn btn-danger" type="button" id="dislike">Dislike</div>
+                            <div class="btn btn-inverse" type="button" id="favorites">Add to favorites</div>
                         </div>
+
+                        <div class="btn-group">
+                            <div class="btn btn-success" type="button" id="fblogin">FB Login</div>
+                        </div>
+
+
                     </div>
                 </form>
 
