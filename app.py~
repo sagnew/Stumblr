@@ -22,8 +22,7 @@ def stumbl():
 
 @app.route('/like', methods=['POST', 'GET'])
 def share():
-    sendgrid.sendmail(url='http://blog.pennapps.com/')
-    return render_template('stumbl.html', url = 'http://blog.pennapps.com/')
+    sendgrid.sendmail(url=)
 
 @app.route('/like', methods=['POST', 'GET'])
 def like():
