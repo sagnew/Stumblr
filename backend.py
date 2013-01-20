@@ -12,10 +12,6 @@ import random
 import json
 import mongoFunctions
 
-#Set up the database
-connection = pymongo.Connection('mongodb://santa:balls@linus.mongohq.com:10040/secret_santa')
-db = connection.Stumblr
-collection = db.Users
 
 tagDict = {}
 userDict = {}
