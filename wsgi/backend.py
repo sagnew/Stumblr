@@ -44,17 +44,18 @@ def retrieveTagUrlsOld(tagname, urlType='short_url'):
         
 def retrieveTagUrls(tagname, urlType='short_url'):
     '''Retrieves urls for specified tag'''
-    url = "http://api.tumblr.com/v2/tagged?tag=" + tagname + "&api_key=fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4"
-    req = urllib2.Request(url)
-    opener = urllib2.build_opener()
-    f = opener.open(req)
-    json = f.read()
-    json = simplejson.loads(json)
+    try:
+        url = "http://api.tumblr.com/v2/tagged?tag=" + tagname + "&api_key=fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4"
+        req = urllib2.Request(url)
+        opener = urllib2.build_opener()
+        f = opener.open(req)
+        json = f.read()
+        json = simplejson.loads(json)
 #    json.dump('%s/json' % data_dir)
     # return a list of (post url, photo url) tuples
-    try:
-#        return [ (j['post_url'], j['photos'][0]['original_size']['url']) for j in json['response'] if j.has_key('photos')]
-        return [ j['short_url'] for j in json['response'] if j.has_key('photos')]
+
+        return [ (j['post_url'], j['photos'][0]['original_size']['url']) for j in json['response'] if j.has_key('photos')]
+#        return [ j['short_url'] for j in json['response'] if j.has_key('photos')]
     except:
 
         return ""
