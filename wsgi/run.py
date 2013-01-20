@@ -22,11 +22,13 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+def clean(img):
+    return ''.join(''.join((img.split('.')[3]).split('\\')).split('/'))
 
 @app.route('/stumbl', methods=['POST', 'GET'])
 def stumbl():
     url, img = backend.getNextUrl()
-    pullFile(data_dir, img, '1827130080', 'blah')
+    backend.pullFile(data_dir, img, '1827130080', clean(img))
     return render_template('stumbl.html', url = url)
 
 
