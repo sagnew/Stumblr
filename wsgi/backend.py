@@ -197,8 +197,10 @@ def pullFile(dataDir, url, userId, filename):
     try:
         urlretrieve(url, path)
     except IOError:
-        addUser(userId)
+        addUser(dataDir, userId)
         urlretrieve(url, path)
+    except:
+        return
 
 # create user (on login)
 def addUser(dataDir, userId):
