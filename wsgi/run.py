@@ -26,7 +26,7 @@ def index():
 @app.route('/stumbl', methods=['POST', 'GET'])
 def stumbl():
     url, img = backend.getNextUrl()
-    pullFile(data_dir, img, '1827130080', 'blah')
+    #pullFile(data_dir, img, '1827130080', 'blah')
     return render_template('stumbl.html', url = url)
 
 
