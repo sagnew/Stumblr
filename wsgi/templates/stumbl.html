@@ -76,7 +76,7 @@ function testAPI() {
         console.log('Good to see you, ' + response.name + '.');
     });
     $('#stumbl').click( function(){
-         $.post("/submit", data);
+         $.post("/stumbl", data);
     });
 
 
@@ -86,6 +86,7 @@ function testAPI() {
 </head>
 
 <body>
+{% block content %}
 <div class="container">
 			<!-- Modal -->
   <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
@@ -148,7 +149,7 @@ function testAPI() {
   <article class="tab-content">
 
     <div class="tab-pane active" id="display">
-      <iframe id="tumblr" sandbox="allow-forms allow-scripts" src="http://tumblr.com" height="100%" width="100%"></iframe>
+      <iframe id="tumblr" sandbox="allow-forms allow-scripts" src='{{ url }}' http://tumblr.com" height="100%" width="100%"></iframe>
       <div id="splash">
         <center>
           <h1>Welcome to Stumblr!</h1>
@@ -172,5 +173,6 @@ function testAPI() {
 
 		<!-- -<script src="/static/js/jquery-1.8.2.min.js" type="text/javascript"></script>-->
 <script src="/static/js/bootstrap.js" type="text/javascript"></script>
+{%endblock%}
 </body>
 </html>
