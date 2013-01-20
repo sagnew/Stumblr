@@ -17,7 +17,7 @@ def main_page():
 def stumbl():
     #userid = request.form['fb_id']
     mongoFunctions.insert_user(25, {})
-    url = backend.getUrl({"Guitar": 5, "Pennapps": 20, "Shred": 6, "HackRU": 2, "Thrash": 3, "metal": 2, "computer": 4, "technology": 2 }, 25)
+    url = backend.getUrl({"ninja turtles": 25, "Guitar": 5, "Pennapps": 20, "HackRU": 2, "Thrash": 3, "computer": 4, "technology": 2, "science": 3, "physics": 12, "Astronomy": 3, "Ninja Turtles": 20, "tmnt": 10 }, 25)
     return render_template('stumbl.html', url = url)
 
 @app.route('/like', methods=['POST', 'GET'])
