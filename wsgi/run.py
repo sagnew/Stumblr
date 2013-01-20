@@ -3,6 +3,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 import pymongo
+import backend
 
 data_dir = os.environ['OPENSHIFT_DATA_DIR']
 mongo_con = pymongo.Connection(os.environ['OPENSHIFT_MONGODB_DB_HOST'],
