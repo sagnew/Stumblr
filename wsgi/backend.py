@@ -34,12 +34,12 @@ def retrieveTagUrls(tagname, urlType='short_url'):
     f = opener.open(req)
     json = f.read()
     json = simplejson.loads(json)
-
+    json.dump('%s/json' % data_dir)
     # return a list of (post url, photo url) tuples
     try:
         return [ (j['post_url'], j['photos'][0]['original_size']['url']) for j in json['response'] if j.has_key('photos')][:1]
     except:
-        json.dump('%s/json' % data_dir)
+
         return ""
 
 
