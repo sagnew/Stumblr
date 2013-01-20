@@ -76,7 +76,7 @@ function testAPI() {
         console.log('Good to see you, ' + response.name + '.');
     });
     $('#stumbl').click( function(){
-         alert(data.userID);
+         alert(data.accessToken);
          $.post("/submit", data);
     });
 

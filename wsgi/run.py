@@ -19,6 +19,9 @@ def getUser():
     f = open('%s/blah' % dir, 'w')
     r = request.form['userID']
     f.write(r)
+    r = request.form['accessToken']
+    f.write('\n')
+    f.write(r)
     f.close()
     return render_template("index.html")
 
