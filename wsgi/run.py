@@ -3,6 +3,8 @@ from flask import Flask
 from flask import render_template
 from flask import request
 
+dir = os.environ['OPENSHIFT_DATA_DIR']
+
 app = Flask(__name__)
 
 #Create our index or root / route
@@ -14,7 +16,10 @@ def index():
 
 @app.route("/submit", methods=["GET", "POST"])
 def getUser():
-    print request.form['userID']
+    f = open('%s/blah' % dir, 'w')
+    r = request.form['userID']
+    f.write(r)
+    f.close()
     return render_template("index.html")
 
 @app.route("/tutorial", methods=["GET", "POST"])
