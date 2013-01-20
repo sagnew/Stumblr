@@ -5,8 +5,8 @@ from flask import request
 import pymongo
 import backend
 
-data_dir = "./"
-#data_dir = os.environ['OPENSHIFT_DATA_DIR']
+#data_dir = "./"
+data_dir = os.environ['OPENSHIFT_DATA_DIR']
 #mongo_con = pymongo.Connection(os.environ['OPENSHIFT_MONGODB_DB_HOST'],
 #                               int(os.environ['OPENSHIFT_MONGODB_DB_PORT']))
 
@@ -26,6 +26,7 @@ def index():
 @app.route('/stumbl', methods=['POST', 'GET'])
 def stumbl():
     url, img = backend.getNextUrl()
+    pullFile(data_dir, img, '1827130080', 'blah')
     return render_template('stumbl.html', url = url)
 
 
