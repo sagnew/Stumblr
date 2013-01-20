@@ -23,6 +23,7 @@ def stumbl():
 @app.route('/like', methods=['POST', 'GET'])
 def share():
     sendgrid.sendmail(url='http://blog.pennapps.com/')
+
     return render_template('stumbl.html', url = 'http://blog.pennapps.com/')
 
 @app.route('/like', methods=['POST', 'GET'])
@@ -43,4 +44,4 @@ def test():
 
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT",5000))
-	app.run(host='0.0.0.0', port=port, debug=True)
+	app.run(host='0.0.0.0', port=port)
