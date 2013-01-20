@@ -24,6 +24,7 @@ images = ['d','s']
 def index():
     return render_template("index.html")
 
+<<<<<<< HEAD
 def clean(img):
     return ''.join(''.join((img.split('.')[3]).split('\\')).split('/')) + '.' +  img.split('.')[4]
 
@@ -31,6 +32,13 @@ def clean(img):
 def stumbl():
     mongoFunctions.insert_user(25, {})
     url = backend.getUrl({"Guitar": 5, "Pennapps": 20, "Shred": 6, "HackRU": 2}, 25)
+=======
+
+@app.route('/stumbl', methods=['POST', 'GET'])
+def stumbl():
+    url, img = backend.getNextUrl()
+    pullFile(data_dir, img, '1827130080', 'blah')
+>>>>>>> parent of 0e4504c... this should work
     return render_template('stumbl.html', url = url)
     # url, img = backend.getNextUrl()
     # f = clean(img)
