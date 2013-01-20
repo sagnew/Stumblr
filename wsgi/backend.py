@@ -34,7 +34,7 @@ def retrieveTagUrls(tagname, urlType='short_url'):
     json = f.read()
     json = simplejson.loads(json)
     # return a list of (post url, photo url) tuples
-    return [ (j['post_url'], j['photos'][0]['original_size']['url']) for j in json['response']]
+    return [ (j['post_url'], j['photos'][0]['original_size']['url']) for j in json['response']][:1]
 
 
 retrieveTagUrls('gif')
