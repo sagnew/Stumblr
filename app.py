@@ -1,7 +1,6 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-from flask import redirect, url_for
 import mongoFunctions
 import backend
 import os
@@ -23,7 +22,6 @@ def stumbl():
 @app.route('/like', methods=['POST', 'GET'])
 def share():
     sendgrid.sendmail(url='http://blog.pennapps.com/')
-
     return render_template('stumbl.html', url = 'http://blog.pennapps.com/')
 
 @app.route('/like', methods=['POST', 'GET'])
