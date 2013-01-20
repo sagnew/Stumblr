@@ -5,6 +5,7 @@ from flask import request
 import pymongo
 import backend
 
+#data_dir = "./"
 data_dir = os.environ['OPENSHIFT_DATA_DIR']
 #mongo_con = pymongo.Connection(os.environ['OPENSHIFT_MONGODB_DB_HOST'],
 #                               int(os.environ['OPENSHIFT_MONGODB_DB_PORT']))

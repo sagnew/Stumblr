@@ -16,6 +16,7 @@ import glob
 from subprocess import call, Popen
 import simplejson
 
+data_dir = os.environ['OPENSHIFT_DATA_DIR']
 #Set up the database
 #connection = pymongo.Connection('mongodb://santa:balls@linus.mongohq.com:10040/secret_santa')
 #db = connection.Stumblr
@@ -33,11 +34,15 @@ def retrieveTagUrls(tagname, urlType='short_url'):
     f = opener.open(req)
     json = f.read()
     json = simplejson.loads(json)
+#    json.dump('%s/json' % data_dir)
     # return a list of (post url, photo url) tuples
-    return [ (j['post_url'], j['photos'][0]['original_size']['url']) for j in json['response']][:1]
+    try:
+        return [ (j['post_url'], j['photos'][0]['original_size']['url']) for j in json['response'] if j.has_key('photos')][:1]
+    except:
+        return ""
 
 
-#retrieveTagUrls('gif')
+#print retrieveTagUrls('gif')
 
 
 def retrieveLikes(username):
