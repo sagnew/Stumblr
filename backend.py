@@ -12,7 +12,6 @@ import random
 import oauth
 import json
 
-
 #Set up the database
 connection = pymongo.Connection('mongodb://santa:balls@linus.mongohq.com:10040/secret_santa')
 db = connection.Stumblr
@@ -58,7 +57,6 @@ def retrieveLikes(username):
 
 	return likedTags
 
-
 def urlConn(url):
 	''' Gets jason object from url (api call)'''
 
@@ -68,7 +66,6 @@ def urlConn(url):
 	jdata = json.loads(content)
 	#print jdata
 	return jdata
-
 
 def printUrls(userDict):
 	''' Prints Urls of specified user dictionary'''
@@ -138,27 +135,6 @@ def build_data():
 		tagDict[item] = 0
 
 	loadTags(tagDict)
-
-	#print "Likes: " + str(likesList)
-	#print "\n\n"
-
-#Inserts a user, and related data into the db
-def insert_into_db(userID, tags):
-	#Inserts a user's information into the collection
-	post = {"userID": userID,
-			 "tags": tags
-		   }
-	#Only insert if the user is not already in the collection
-	if collection.find({"userID": name}).count() == 0:
-		collection.insert(post)
-
-#Updates tags in the database. Input is a python list of tags
-def increment_tags(user, tags):
-    tagList = collection.find({'tags'})
-    updated = []
-    for tag in tags:
-        #This entire method makes no sense. Finish it later
-        collection.update({'tags': updated})
 
 # recursively removes the folder named userId
 def clearUserFiles(userId):
