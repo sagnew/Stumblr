@@ -7,11 +7,11 @@ import backend
 
 data_dir = os.environ['OPENSHIFT_DATA_DIR']
 #mongo_con = pymongo.Connection(os.environ['OPENSHIFT_MONGODB_DB_HOST'],
-                               int(os.environ['OPENSHIFT_MONGODB_DB_PORT']))
+#                               int(os.environ['OPENSHIFT_MONGODB_DB_PORT']))
 
 #mongo_db = mongo_con[os.environ['OPENSHIFT_APP_NAME']]
 #mongo_db.authenticate(os.environ['OPENSHIFT_MONGODB_DB_USERNAME'],
-                      os.environ['OPENSHIFT_MONGODB_DB_PASSWORD'])
+#                      os.environ['OPENSHIFT_MONGODB_DB_PASSWORD'])
 
 
 app = Flask(__name__)
