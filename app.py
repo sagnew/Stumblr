@@ -17,6 +17,18 @@ def stumbl():
     print url
     return render_template('stumbl.html', url = url)
 
+@app.route('/like', methods=['POST', 'GET'])
+def like():
+    return
+
+@app.route('/dislike', methods=['POST', 'GET'])
+def dislike():
+    return
+
+@app.route('/favorites', methods=['POST', 'GET'])
+def favorites():
+    return
+
 @app.route('/test', methods=['POST', 'GET'])
 def test():
 	return render_template('test.html')

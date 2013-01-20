@@ -38,7 +38,6 @@ def retrieveTagUrls(tagname, urlType='short_url'):
 		return ""
 
 
-
 def retrieveLikes(username):
 	''' Retrieves likes of specified user'''
 
@@ -144,13 +143,13 @@ def build_data():
 	#print "\n\n"
 
 #Inserts a user, and related data into the db
-def insert_into_db(name, tags):
+def insert_into_db(userID, tags):
 	#Inserts a user's information into the collection
-	post = {"name": name,
+	post = {"userID": userID,
 			 "tags": tags
 		   }
 	#Only insert if the user is not already in the collection
-	if collection.find({"name": name}).count() == 0:
+	if collection.find({"userID": name}).count() == 0:
 		collection.insert(post)
 
 #Updates tags in the database. Input is a python list of tags
