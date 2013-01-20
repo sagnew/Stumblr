@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from flask import redirect, url_for
+import mongoFunctions
 import backend
 import os
 
@@ -13,8 +14,9 @@ def main_page():
 
 @app.route('/stumbl', methods=['POST', 'GET'])
 def stumbl():
-    url = backend.getNextUrl()
-    print url
+    #userid = request.form['fb_id']
+    mongoFunctions.insert_user(25, {})
+    url = backend.getUrl({"Guitar": 5, "Pennapps": 20, "Shred": 6, "HackRU": 2}, 25)
     return render_template('stumbl.html', url = url)
 
 @app.route('/like', methods=['POST', 'GET'])

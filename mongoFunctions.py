@@ -7,11 +7,22 @@ def insert_user(userID, tags):
     #Inserts a user's informat into the collection.
     post = {"userid": userID,
     		"tags": tags,
-    		"urls": {}
+    		"urls": {},
+            "recently_visited": ['http://tumblr.com']
     		}
     #only insert if the user is not already in the collection.
     if db.find({"userid": userID}).count() == 0:
     	db.insert(post)
+
+def recently_visited(userid):
+    val = db.find_one({'userid': userid})
+    return val['recently_visited']
+
+def add_to_recently_visited(userid, site):
+    val = db.find_one({'userid': userid})
+    recentSites = val['recently_visited']
+    recentSites.append(site)
+    db.update({'userid': userid}, val)
 
 def add_tags(userID, tags):
     val = db.find_one({'userid': userID})
@@ -46,22 +57,6 @@ def decrement_tags(userID, tags):
     		tagVals[t] = tagVals[t] - 1
     	else:
     		decList.append(t)
-    db.update({'userid':userID},val)
-
+    db.update({'useridhttp://tmblr.co/ZPVkJuc6heiZ':userID},val)
 db.drop()
-
-insert_user(25, {"Kung Fu": 1, "Hacking": 1})
-for item in db.find():
-    print item
-print "  "
-increment_tags(25, ["Kung Fu", "Hacking"])
-for item in db.find():
-    print item
-print " "
-decrement_tags(25, ["Kung Fu", "Hacking"])
-for item in db.find():
-    print item
-print " "
-add_tags(25, ["Fighting", "Guitar"])
-for item in db.find():
-    print item
+insert_user({'userid': 25}, {"Cars": 2, "Guitar": 4, "hacking": 6, "Pennapps": 10})

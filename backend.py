@@ -11,6 +11,7 @@ import urllib2
 import random
 import oauth
 import json
+import mongoFunctions
 
 #Set up the database
 connection = pymongo.Connection('mongodb://santa:balls@linus.mongohq.com:10040/secret_santa')
@@ -135,6 +136,31 @@ def build_data():
 		tagDict[item] = 0
 
 	loadTags(tagDict)
+
+#Alternative to Ruell's function
+#Receives a python dict as input with weighted tags
+def getUrl(tags, userid):
+    weightedList = []
+    for tag in tags:
+        x = 0
+        while x < tags[tag]:
+            weightedList.append(tag)
+            x += 1
+
+    Urls = retrieveTagUrls(random.choice(weightedList))
+    x = 0
+    while len(Urls) <= 0:
+        x += 1
+        if x > 100:
+            Urls = ['http://tumblr.com']
+        Urls = retrieveTagUrls(random.choice(weightedList))
+
+
+    choice = random.choice(Urls)
+    while choice in mongoFunctions.recently_visited(userid):
+        choice = random.choice(Urls)
+        mongoFunctions.add_to_recently_visited(userid, choice)
+    return choice
 
 # recursively removes the folder named userId
 def clearUserFiles(userId):
