@@ -9,7 +9,7 @@ import pymongo
 import urllib2
 #from random import randint, choice
 import random
-import oauth
+#import oauth
 import json
 import shlex
 import glob
@@ -111,9 +111,9 @@ def getNextUrl():
 
 
 def auth():
-    REQUEST_TOKEN_URL = 'http://www.tumblr.com/oauth/request_token'
-    AUTHORIZATION_URL = 'http://www.tumblr.com/oauth/authorize'
-    ACCESS_TOKEN_URL = 'http://www.tumblr.com/oauth/access_token'
+    #REQUEST_TOKEN_URL = 'http://www.tumblr.com/oauth/request_token'
+    #AUTHORIZATION_URL = 'http://www.tumblr.com/oauth/authorize'
+    #ACCESS_TOKEN_URL = 'http://www.tumblr.com/oauth/access_token'
     CONSUMER_KEY = '2WJiWpzEmdfDPDFDvoBnwvC6L9AwJqD4A78MOg82zPAYQJryhZ'
     CONSUMER_SECRET = 'your_consumer_secret'
     
@@ -121,7 +121,7 @@ def auth():
     client = oauth2.Client(consumer)
     
 	#Step 1
-    resp, content = client.request(REQUEST_TOKEN_URL, "GET")
+   # resp, content = client.request(REQUEST_TOKEN_URL, "GET")
     
     request_token = dict(urlparse.parse_qsl(content))
     print "Request Token:"
@@ -130,7 +130,7 @@ def auth():
 
 	#Step 2
     print "Go to the following link in your browser:"
-    print "%s?oauth_token=%s" % (AUTHORIZATION_URL, request_token['oauth_token'])
+    #print "%s?oauth_token=%s" % (AUTHORIZATION_URL, request_token['oauth_token'])
 
 def build_data():
     likesList = retrieveLikes("Jaguar7444")
