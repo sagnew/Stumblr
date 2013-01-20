@@ -37,7 +37,7 @@ def retrieveTagUrls(tagname, urlType='short_url'):
     return [ (j['post_url'], j['photos'][0]['original_size']['url']) for j in json['response']][:1]
 
 
-retrieveTagUrls('gif')
+#retrieveTagUrls('gif')
 
 
 def retrieveLikes(username):
