@@ -6,5 +6,5 @@ setup(name='Stumblr',
       author='Jesse',
       author_email='jh3141@gmail.com',
       url='http://www.python.org/sigs/distutils-sig/',
-      install_requires=['Flask>=0.7.2', 'simplejson', 'pymongo'],
+      install_requires=['Flask>=0.7.2', 'simplejson', 'pymongo', 'shutil', 'urllib', 'urllib2', 'json', 'shlex', 'glob', 'subprocess'],
      )
