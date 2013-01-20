@@ -5,7 +5,7 @@ This file should be placed on project root directory
 import shutil
 from urllib import urlretrieve
 import os
-import pymongo
+#import pymongo
 import urllib2
 #from random import randint, choice
 import random
@@ -14,11 +14,12 @@ import json
 import shlex
 import glob
 from subprocess import call, Popen
+import simplejson
 
 #Set up the database
-connection = pymongo.Connection('mongodb://santa:balls@linus.mongohq.com:10040/secret_santa')
-db = connection.Stumblr
-collection = db.Users
+#connection = pymongo.Connection('mongodb://santa:balls@linus.mongohq.com:10040/secret_santa')
+#db = connection.Stumblr
+#collection = db.Users
 
 tagDict = {}
 userDict = {}
@@ -26,18 +27,17 @@ userDict = {}
 
 def retrieveTagUrls(tagname, urlType='short_url'):
     '''Retrieves urls for specified tag'''
-    try:
-        url = "http://api.tumblr.com/v2/tagged?tag=" + tagname + "&api_key=fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4"
-        jdata = urlConn(url)
-        urlList = []
+    url = "http://api.tumblr.com/v2/tagged?tag=" + tagname + "&api_key=fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4"
+    req = urllib2.Request(url)
+    opener = urllib2.build_opener()
+    f = opener.open(req)
+    json = f.read()
+    json = simplejson.loads(json)
+    # return a list of (post url, photo url) tuples
+    return [ (j['post_url'], j['photos'][0]['original_size']['url']) for j in json['response']]
 
-        for x in xrange(0, len(jdata['response'])):
-            urlList.append(jdata['response'][x][urlType])  #or 'post_url'
 
-        return urlList
-    except:
-        return ""
-
+retrieveTagUrls('gif')
 
 
 def retrieveLikes(username):
@@ -139,7 +139,8 @@ def build_data():
     for item in likesList:
         tagDict[item] = 0
 
-    loadTags(tagDict)
+
+        loadTags(tagDict)
 
 	#print "Likes: " + str(likesList)
 	#print "\n\n"
