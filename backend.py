@@ -9,7 +9,6 @@ import pymongo
 import urllib2
 #from random import randint, choice
 import random
-import oauth
 import json
 import mongoFunctions
 
