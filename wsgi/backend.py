@@ -155,20 +155,20 @@ def insert_into_db(name, tags):
         collection.insert(post)
 
 #Updates tags in the database. Input is a python list of tags
-def increment_tags(user, tags):
-    tagList = collection.find({'tags'})
-    updated = []
-    for tag in tags:
-        #This entire method makes no sense. Finish it later
-        collection.update({'tags': updated})
+# def increment_tags(user, tags):
+#     tagList = collection.find({'tags'})
+#     updated = []
+#     for tag in tags:
+#         #This entire method makes no sense. Finish it later
+#         collection.update({'tags': updated})
 
 # recursively removes the folder named userId
-def clearUserFiles(userId):
-    shutil.rmtree('./%s' % userId)
+def clearUserFiles(dataDir, userId):
+    shutil.rmtree('%s/%s' % (dataDir, userId))
 
 # download file to userId/filename
-def pullFile(url, userId, filename):
-    path = "./%s/%s" % (userId, filename)
+def pullFile(dataDir, url, userId, filename):
+    path = "%s/%s/%s" % (dataDir, userId, filename)
     try:
         urlretrieve(url, path)
     except IOError:
@@ -176,13 +176,13 @@ def pullFile(url, userId, filename):
         urlretrieve(url, path)
 
 # create user (on login)
-def addUser(userId):
-    directory = "./%s" % userId
+def addUser(dataDir, userId):
+    directory = "%s/%s" % (dataDir, userId)
     if not os.path.exists(directory):
         os.makedirs(directory)
 
 # gif movie functions
-def makeMovie(lstOfNames):
+def makeMovie(dataDir, lstOfNames):
     # get the first file's name (without extension)
     fnameMaster = lstOfNames[0].split('.')[0]
     
@@ -193,7 +193,7 @@ def makeMovie(lstOfNames):
     call(['convert', '-delay', '20', '-loop', '2', '%s*.png' % fnameMaster, 'anim.gif'])
 
     # clear the temp files
-    cmd = 'rm -f ./%s*.png' % fnameMaster
+    cmd = 'rm -f %s/%s*.png' % (dataDir, fnameMaster)
     arg = shlex.split(cmd)
     arg = arg[:-1] + glob.glob(arg[-1])
 
