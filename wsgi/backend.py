@@ -16,7 +16,7 @@ import glob
 from subprocess import call, Popen
 import simplejson
 
-data_dir = os.environ['OPENSHIFT_DATA_DIR']
+#data_dir = os.environ['OPENSHIFT_DATA_DIR']
 #Set up the database
 #connection = pymongo.Connection('mongodb://santa:balls@linus.mongohq.com:10040/secret_santa')
 #db = connection.Stumblr
@@ -26,7 +26,7 @@ tagDict = {}
 userDict = {}
 
 
-def retrieveTagUrls(tagname, urlType='short_url'):
+def retrieveTagUrlsOld(tagname, urlType='short_url'):
     '''Retrieves urls for specified tag'''
     try:
 
@@ -42,7 +42,7 @@ def retrieveTagUrls(tagname, urlType='short_url'):
         return ""
 
         
-def retrieveTagUrlsFucked(tagname, urlType='short_url'):
+def retrieveTagUrls(tagname, urlType='short_url'):
     '''Retrieves urls for specified tag'''
     url = "http://api.tumblr.com/v2/tagged?tag=" + tagname + "&api_key=fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4"
     req = urllib2.Request(url)
@@ -50,16 +50,17 @@ def retrieveTagUrlsFucked(tagname, urlType='short_url'):
     f = opener.open(req)
     json = f.read()
     json = simplejson.loads(json)
-    json.dump('%s/json' % data_dir)
+#    json.dump('%s/json' % data_dir)
     # return a list of (post url, photo url) tuples
     try:
-        return [ (j['post_url'], j['photos'][0]['original_size']['url']) for j in json['response'] if j.has_key('photos')]
+#        return [ (j['post_url'], j['photos'][0]['original_size']['url']) for j in json['response'] if j.has_key('photos')]
+        return [ j['short_url'] for j in json['response'] if j.has_key('photos')]
     except:
 
         return ""
 
 
-#print retrieveTagUrls('gif')
+#print retrieveTagUrls('happy')
 
 
 def retrieveLikes(username):
