@@ -4,9 +4,10 @@ from flask import render_template
 from flask import request
 import pymongo
 import backend
+import mongoFunctions
 
-#data_dir = "./"
-data_dir = os.environ['OPENSHIFT_DATA_DIR']
+data_dir = "./"
+#data_dir = os.environ['OPENSHIFT_DATA_DIR']
 #mongo_con = pymongo.Connection(os.environ['OPENSHIFT_MONGODB_DB_HOST'],
 #                               int(os.environ['OPENSHIFT_MONGODB_DB_PORT']))
 
@@ -16,6 +17,7 @@ data_dir = os.environ['OPENSHIFT_DATA_DIR']
 
 
 app = Flask(__name__)
+images = ['d','s']
 
 #Create our index or root / route
 @app.route("/")
@@ -23,13 +25,47 @@ def index():
     return render_template("index.html")
 
 def clean(img):
-    return ''.join(''.join((img.split('.')[3]).split('\\')).split('/'))
+    return ''.join(''.join((img.split('.')[3]).split('\\')).split('/')) + '.' +  img.split('.')[4]
 
 @app.route('/stumbl', methods=['POST', 'GET'])
 def stumbl():
-    url, img = backend.getNextUrl()
-    backend.pullFile(data_dir, img, '1827130080', clean(img))
+    mongoFunctions.insert_user(25, {})
+    url = backend.getUrl({"Guitar": 5, "Pennapps": 20, "Shred": 6, "HackRU": 2}, 25)
     return render_template('stumbl.html', url = url)
+    # url, img = backend.getNextUrl()
+    # f = clean(img)
+    # images.append(f)
+    # backend.pullFile(data_dir, img, '1827130080', f)
+    # return render_template('stumbl.html', url = url)
+
+
+# @app.route('/movie', methods=['POST', 'GET'])
+# def movie():
+#     backend.makeMovie(data_dir, images)
+#     return "<html> movie right here</html>"
+
+@app.route('/like', methods=['POST', 'GET'])
+def like():
+    return
+
+@app.route('/dislike', methods=['POST', 'GET'])
+def dislike():
+    return
+
+@app.route('/favorites', methods=['POST', 'GET'])
+def favorites():
+    return
+
+
+@app.route('/test', methods=['POST', 'GET'])
+def test():
+	return render_template('test.html')
+
+
+@app.route('/dropbox', methods=['POST', 'GET'])
+def movie():
+    
+    return "<html> movie right here</html>"
 
 
 @app.route("/submit", methods=["GET", "POST"])
