@@ -13,23 +13,18 @@ def main_page():
 
 @app.route('/stumbl', methods=['POST', 'GET'])
 def stumbl():
-    #userid = request.form['fb_id']
+    userid = request.form['UserID']
     mongoFunctions.insert_user(25, {})
     userid = 25
     url = backend.getUrl({"ninja turtles": 25, "Guitar": 5, "Pennapps": 20, "HackRU": 2, "Thrash": 3, "computer": 4, "technology": 2, "science": 3, "physics": 12, "Astronomy": 3, "Ninja Turtles": 20, "tmnt": 10 }, userid)
     return render_template('stumbl.html', url = url)
-
-@app.route('/share', methods=['POST', 'GET'])
-def share():
-    sendgrid.sendmail(url='http://blog.pennapps.com/')
-    return render_template('stumbl.html', url = 'http://blog.pennapps.com/')
 
 @app.route('/like', methods=['POST', 'GET'])
 def like():
     url = request.form['url']
     #tumblr api call to get tags off of url
     tags = ['ninja turtles', 'PennApps', 'HackRU']
-    userid = request.form['fblogin']
+    userid = request.form['userID']
     mongoFunctions.increment_tags(userid, tags)
     return render_template('stumbl.html', url = url)
 
@@ -37,7 +32,7 @@ def like():
 def dislike():
     url = request.form['url']
     #tumblr api call to get tags off of url
-    userid = request.form['fb_id']
+    userid = request.form['userID']
     tags = ['ninja turtles', 'Pennapps', 'HackRU']
     mongoFunctions.decrement_tags(userid, tags)
     return render_template('stumbl.html', url = url)
@@ -45,7 +40,7 @@ def dislike():
 @app.route('/favorites', methods=['POST', 'GET'])
 def favorites():
     url = request.form['url']
-    userid = request.form['fblogin']
+    userid = request.form['userID']
     mongoFunctions.add_to_favs(userid, url)
     return render_template('stumbl.html', url = url)
 

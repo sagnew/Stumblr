@@ -8,8 +8,9 @@ def insert_user(userID, tags):
     post = {"userid": userID,
     		"tags": tags,
     		"urls": {},
-            "recently_visited": ['http://tumblr.com']
-    		}
+            "recently_visited": ['http://tumblr.com'],
+            "favorites": ['www.google.com']
+            }
     #only insert if the user is not already in the collection.
     if db.find({"userid": userID}).count() == 0:
     	db.insert(post)
@@ -22,6 +23,12 @@ def add_to_recently_visited(userid, site):
     val = db.find_one({'userid': userid})
     recentSites = val['recently_visited']
     recentSites.append(site)
+    db.update({'userid': userid}, val)
+
+def add_to_favorites(userid, url):
+    val = db.find_one({'userid': userid})
+    favorites = val['favorites']
+    favorites.append(url)
     db.update({'userid': userid}, val)
 
 def add_tags(userID, tags):
@@ -59,4 +66,4 @@ def decrement_tags(userID, tags):
     		decList.append(t)
     db.update({'useridhttp://tmblr.co/ZPVkJuc6heiZ':userID},val)
 db.drop()
-insert_user({'userid': 25}, {"Cars": 2, "Guitar": 4, "hacking": 6, "Pennapps": 10})
+insert_user(25, {"Cars": 2, "Guitar": 4, "hacking": 6, "Pennapps": 10})
