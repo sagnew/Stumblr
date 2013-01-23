@@ -16,18 +16,20 @@ def stumbl():
     #userid = request.form['userID']
     mongoFunctions.insert_user(25, {})
     userid = 25
-    url = backend.getUrl({"ninja turtles": 25, "Guitar": 5, "Pennapps": 20, "HackRU": 2, "Thrash": 3, "computer": 4, "technology": 2, "science": 3, "physics": 12, "Astronomy": 3, "Ninja Turtles": 20, "tmnt": 10 }, userid)
-    return render_template('stumbl.html', url = url)
+    url, tag = backend.getUrl({"ninja turtles": 25, "Guitar": 5, "Pennapps": 20, "HackRU": 2, "Thrash": 3, "computer": 4, "technology": 2, "science": 3, "physics": 12, "Astronomy": 3, "Ninja Turtles": 20, "tmnt": 10 }, userid)
+    return render_template('stumbl.html', url = url, tag = tag)
 
 @app.route('/like', methods=['POST', 'GET'])
 def like():
     url = request.form['url']
     #tumblr api call to get tags off of url
-    tags = ['ninja turtles', 'PennApps', 'HackRU']
+    tag = request.form['tag']
+    tags = []
+    tags.append(tag)
     #userid = request.form['userID']
     userid = 25
     mongoFunctions.increment_tags(userid, tags)
-    return render_template('stumbl.html', url = url)
+    return render_template('stumbl.html', url = url, tag = tag)
 
 @app.route('/dislike', methods=['POST', 'GET'])
 def dislike():
@@ -35,17 +37,20 @@ def dislike():
     #tumblr api call to get tags off of url
     #userid = request.form['userID']
     userid = 25
-    tags = ['ninja turtles', 'Pennapps', 'HackRU']
+    tag = request.form['tag']
+    tags = []
+    tags.append(tag)
     mongoFunctions.decrement_tags(userid, tags)
-    return render_template('stumbl.html', url = url)
+    return render_template('stumbl.html', url = url, tag = tag)
 
 @app.route('/favorites', methods=['POST', 'GET'])
 def favorites():
     url = request.form['url']
     #userid = request.form['userID']
+    tag = request.form['tag']
     userid = 25
     mongoFunctions.add_to_favorites(userid, url)
-    return render_template('stumbl.html', url = url)
+    return render_template('stumbl.html', url = url, tag = tag)
 
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT",5000))

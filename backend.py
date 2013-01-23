@@ -142,7 +142,8 @@ def getUrl(tags, userid):
             weightedList.append(tag)
             x += 1
 
-    Urls = retrieveTagUrls(random.choice(weightedList))
+    chosenTag = random,choice(weightedList)
+    Urls = retrieveTagUrls(chosenTag)
     x = 0
     while len(Urls) <= 0:
         x += 1
@@ -155,7 +156,7 @@ def getUrl(tags, userid):
     while choice in mongoFunctions.recently_visited(userid):
         choice = random.choice(Urls)
         mongoFunctions.add_to_recently_visited(userid, choice)
-    return choice
+    return choice, chosenTag
 
 # recursively removes the folder named userId
 def clearUserFiles(userId):
