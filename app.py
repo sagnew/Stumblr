@@ -13,7 +13,7 @@ def main_page():
 
 @app.route('/stumbl', methods=['POST', 'GET'])
 def stumbl():
-    userid = request.form['userID']
+    #userid = request.form['userID']
     mongoFunctions.insert_user(25, {})
     userid = 25
     url = backend.getUrl({"ninja turtles": 25, "Guitar": 5, "Pennapps": 20, "HackRU": 2, "Thrash": 3, "computer": 4, "technology": 2, "science": 3, "physics": 12, "Astronomy": 3, "Ninja Turtles": 20, "tmnt": 10 }, userid)
