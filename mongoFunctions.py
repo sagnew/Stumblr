@@ -1,7 +1,7 @@
 import pymongo
 
-connection = pymongo.Connection()
-db = pymongo.Connection().Stumblr.posts
+connection = pymongo.Connection('mongodb://stumbler:pennapps@linus.mongohq.com:10061/Stumblr')
+db = connection.Stumblr.Users
 
 def insert_user(userID, tags):
     #Inserts a user's informat into the collection.
