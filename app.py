@@ -14,9 +14,9 @@ def main_page():
 @app.route('/stumbl', methods=['POST', 'GET'])
 def stumbl():
     #userid = request.form['userID']
-    mongoFunctions.insert_user(25, {})
+    mongoFunctions.insert_user(25, ){"ninja turtles": 25, "Guitar": 5, "Pennapps": 20, "HackRU": 2, "Thrash": 3, "computer": 4, "technology": 2, "science": 3, "physics": 12, "Astronomy": 3, "Ninja Turtles": 20, "tmnt": 10 }
     userid = 25
-    url, tag = backend.getUrl({"ninja turtles": 25, "Guitar": 5, "Pennapps": 20, "HackRU": 2, "Thrash": 3, "computer": 4, "technology": 2, "science": 3, "physics": 12, "Astronomy": 3, "Ninja Turtles": 20, "tmnt": 10 }, userid)
+    url, tag = backend.getUrl(mongoFunctions.get_tags(userid), userid)
     return render_template('stumbl.html', url = url, tag = tag)
 
 @app.route('/like', methods=['POST', 'GET'])
