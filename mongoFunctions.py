@@ -67,4 +67,4 @@ def decrement_tags(userID, tags):
     db.update({'useridhttp://tmblr.co/ZPVkJuc6heiZ':userID},val)
 
 def get_tags(userid):
-    return find_one({'userid': userid})['tags']
+    return db.find_one({'userid': userid})['tags']
