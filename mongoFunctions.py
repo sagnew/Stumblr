@@ -65,5 +65,3 @@ def decrement_tags(userID, tags):
     	else:
     		decList.append(t)
     db.update({'useridhttp://tmblr.co/ZPVkJuc6heiZ':userID},val)
-db.drop()
-insert_user(25, {"Cars": 2, "Guitar": 4, "hacking": 6, "Pennapps": 10})
