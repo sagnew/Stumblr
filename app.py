@@ -44,7 +44,7 @@ def favorites():
     url = request.form['url']
     #userid = request.form['userID']
     userid = 25
-    mongoFunctions.add_to_favs(userid, url)
+    mongoFunctions.add_to_favorites(userid, url)
     return render_template('stumbl.html', url = url)
 
 if __name__ == '__main__':
