@@ -40,7 +40,7 @@ def add_tags(userID, tags):
         	tagVals[t] = 0
     db.update({'userid': userID}, tagVals)
 
-def increment_tags(userID, tags):
+def update_tags(userID, tags, num):
     val = db.find_one({'userid': userID})
     tagVals = val['tags']
 
@@ -48,23 +48,10 @@ def increment_tags(userID, tags):
 
     for t in tags:
     	if t in tagVals.keys():
-    	    tagVals[t] = tagVals[t] + 1
+    	    tagVals[t] = tagVals[t] + num
     	else:
     		incList.append(t)
     db.update({'userid':userID},val)
-
-def decrement_tags(userID, tags):
-    val = db.find_one({'userid': userID})
-    tagVals = val['tags']
-
-    decList = []
-
-    for t in tags:
-    	if t in tagVals.keys():
-    		tagVals[t] = tagVals[t] - 1
-    	else:
-    		decList.append(t)
-    db.update({'useridhttp://tmblr.co/ZPVkJuc6heiZ':userID},val)
 
 def get_tags(userid):
     return db.find_one({'userid': userid})['tags']
