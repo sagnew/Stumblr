@@ -39,7 +39,7 @@ def dislike():
     tag = request.form['tag']
     tags = []
     tags.append(tag)
-    mongoFunctions.decrement_tags(userid, tags, -1)
+    mongoFunctions.update_tags(userid, tags, -1)
     return render_template('stumbl.html', url = url, tag = tag)
 
 @app.route('/favorites', methods=['POST', 'GET'])
