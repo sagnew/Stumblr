@@ -21,7 +21,7 @@ def stumbl():
 
 @app.route('/like', methods=['POST', 'GET'])
 def like():
-    url = request.form['tumblr']
+    url = request.form['url']
     #tumblr api call to get tags off of url
     tags = ['ninja turtles', 'PennApps', 'HackRU']
     #userid = request.form['userID']
@@ -31,7 +31,7 @@ def like():
 
 @app.route('/dislike', methods=['POST', 'GET'])
 def dislike():
-    url = request.form['tumblr']
+    url = request.form['url']
     #tumblr api call to get tags off of url
     #userid = request.form['userID']
     userid = 25
@@ -41,7 +41,7 @@ def dislike():
 
 @app.route('/favorites', methods=['POST', 'GET'])
 def favorites():
-    url = request.form['tumblr']
+    url = request.form['url']
     #userid = request.form['userID']
     userid = 25
     mongoFunctions.add_to_favs(userid, url)

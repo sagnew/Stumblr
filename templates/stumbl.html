@@ -108,9 +108,11 @@
                         </div>
                     </div>
 
+                    <input type='hidden' value = '{{ url }}' name='url'/>
+
                 </header>
             </div>
-            <iframe id='tumblr' value='{{ url }}' src='{{ url }}' frameBorder='0' name='tumblr' sandbox="allow-forms allow-scripts" height="100%" width="100%"></iframe>
+            <iframe id='tumblr' src='{{ url }}' frameBorder='0' name='tumblr' sandbox="allow-forms allow-scripts" height="100%" width="100%"></iframe>
             <div id="splash">
                 <center>
                     <h1>Welcome to Stumblr!</h1>
