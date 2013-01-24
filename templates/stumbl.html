@@ -11,7 +11,11 @@
         <script src="/static/jquery.js"></script>
 
         <div id="fb-root"></div>
-        <script>
+
+    </head>
+
+    <body >
+     <script>
             // globals
             var data;
 
@@ -72,10 +76,6 @@
                 FB.api('/me', function(response) {
                     console.log('Good to see you, ' + response.name + '.');
                 });
-                $('#stumbl').click( function(){
-                    $.post("/stumbl", data);
-                });
-
             }
 
             function submitForm()
@@ -86,9 +86,7 @@
                 return true;
             }
         </script>
-    </head>
 
-    <body >
         {% block content %}
         <form name="form" method="POST" onSubmit='return submitForm();' action="/stumbl">
             <div class="container">
