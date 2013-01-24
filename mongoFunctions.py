@@ -1,5 +1,6 @@
 import pymongo
 
+#I will change the username/password of the mongohq once the app is actually in production
 connection = pymongo.Connection('mongodb://stumbler:pennapps@linus.mongohq.com:10061/Stumblr')
 db = connection.Stumblr.Users
 
