@@ -15,6 +15,11 @@ def insert_user(userID, tags):
     if db.find({"userid": userID}).count() == 0:
     	db.insert(post)
 
+def hastags(userid):
+    val = db.find_one({'userid': userid})
+    tags = val['tags']
+    return not tags
+
 def recently_visited(userid):
     val = db.find_one({'userid': userid})
     return val['recently_visited']
