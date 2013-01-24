@@ -15,20 +15,12 @@ $(document).ready(function(){
         }
 
     });*/
-
-    $(document).on('click', '#like', function(){
-        //Do stuff here
-        alert('Placeholder');
-    });
-
-    $(document).on('click', '#dislike', function(){
-        //Do stuff here
-        alert('Placeholder');
-    });
-
-    $(document).on('click', '#favorites', function(){
-        //Do stuff here
-        alert('Placeholder');
-    });
+    function submitForm()
+    {
+        document.form.action = document.pressed;
+        data.url = $('#tumblr').val();
+        $.post(document.pressed, data);
+        return true;
+    }
 
 });
