@@ -17,20 +17,7 @@ def stumbl():
     userid = 25
     url, tag = backend.getUrl(mongoFunctions.get_tags(userid), userid)
     mongoFunctions.add_to_recently_visited(userid, url)
-    return render_template('stumbl.html', user = userid, url = url, tag = tag)
-
-@app.route('/register', methods=['POST', 'GET'])
-def register():
-    url = request.form['url']
-    tag = request.form['tag']
-    userid = request.form['userid']
-    tags = request.form['tags'].split(',')
-    mongoFunctions.insert_user(userid, tags)
-    return render_template('stumbl.html', user = userid, url = url, tag = tag)
-
-@app.route('/login', methods=['POST', 'GET'])
-def login():
-
+    return render_template('stumbl.html', url = url, tag = tag)
 
 @app.route('/like', methods=['POST', 'GET'])
 def like():
@@ -38,11 +25,11 @@ def like():
     #tumblr api call to get tags off of url
     tag = request.form['tag']
     tags = []
-    tags.append(tag)</div>
+    tags.append(tag)
     #userid = request.form['userID']
-    userid = request.form['userid']
+    userid = 25
     mongoFunctions.update_tags(userid, tags, 1)
-    return render_template('stumbl.html', user = userid, url = url, tag = tag)
+    return render_template('stumbl.html', url = url, tag = tag)
 
 @app.route('/dislike', methods=['POST', 'GET'])
 def dislike():
@@ -54,7 +41,7 @@ def dislike():
     tags = []
     tags.append(tag)
     mongoFunctions.update_tags(userid, tags, -1)
-    return render_template('stumbl.html', user = userid, url = url, tag = tag)
+    return render_template('stumbl.html', url = url, tag = tag)
 
 @app.route('/favorites', methods=['POST', 'GET'])
 def favorites():
@@ -63,7 +50,7 @@ def favorites():
     tag = request.form['tag']
     userid = 25
     mongoFunctions.add_to_favorites(userid, url)
-    return render_template('stumbl.html', user = userid, url = url, tag = tag)
+    return render_template('stumbl.html', url = url, tag = tag)
 
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT",5000))
