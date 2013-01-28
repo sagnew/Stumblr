@@ -142,7 +142,11 @@ def getUrl(tags, userid):
             weightedList.append(tag)
             x += 1
 
-    chosenTag = random.choice(weightedList)
+    chosenTag = 'hacking'
+
+    if not weightedList == []:
+        chosenTag = random.choice(weightedList)
+
     Urls = retrieveTagUrls(chosenTag)
     x = 0
     while len(Urls) <= 0:

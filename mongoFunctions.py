@@ -5,9 +5,16 @@ connection = pymongo.Connection('mongodb://stumbler:pennapps@linus.mongohq.com:1
 db = connection.Stumblr.Users
 
 def insert_user(userID, tags):
+
+    tagdict = {}
+    for tag in tags:
+        tagdict[tag] = 1
+    if tagdict == {}:
+        tagdict['Hacking'] = 10
+
     #Inserts a user's informat into the collection.
     post = {"userid": userID,
-    		"tags": tags,
+    		"tags": tagdict,
     		"urls": {},
             "recently_visited": ['http://tumblr.com'],
             "favorites": ['www.google.com']
@@ -39,12 +46,11 @@ def add_to_favorites(userid, url):
 
 def add_tags(userID, tags):
     val = db.find_one({'userid': userID})
-    tagVals = val['tags']
 
     for t in tags:
-    	if t not in tagVals.keys():
-        	tagVals[t] = 0
-    db.update({'userid': userID}, tagVals)
+    	if not t in val['tags'].keys():
+            val['tags'][t] = 1
+    db.update({'userid': userID}, val)
 
 def update_tags(userID, tags, num):
     val = db.find_one({'userid': userID})

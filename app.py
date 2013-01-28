@@ -5,6 +5,7 @@ import backend
 import os
 import sendgrid
 import mongoFunctions
+import urllib2
 app = Flask(__name__)
 
 @app.route('/')
@@ -13,44 +14,55 @@ def main_page():
 
 @app.route('/stumbl', methods=['POST', 'GET'])
 def stumbl():
-    #userid = request.form['userID']
-    userid = 25
+    userid = request.form['prompt']
+    tags = request.form['interests']
+    if userid == '':
+        return render_template('stumbl.html', user = '', tag = '', url='http://tumblr.com')
+    tags = tags.split(',')
+
+    if " separated by commas" in tags:
+        tags = ['hacking']
+
+    try:
+        for tag in backend.retrieveLikes(userid):
+            tags.append(tag)
+    except urllib2.HTTPError:
+        tags = tags
+
+    mongoFunctions.insert_user(userid, tags)
+    mongoFunctions.add_tags(userid, tags)
     url, tag = backend.getUrl(mongoFunctions.get_tags(userid), userid)
     mongoFunctions.add_to_recently_visited(userid, url)
-    return render_template('stumbl.html', url = url, tag = tag)
+    return render_template('stumbl.html', url = url, tag = tag, user = userid)
 
 @app.route('/like', methods=['POST', 'GET'])
 def like():
     url = request.form['url']
-    #tumblr api call to get tags off of url
     tag = request.form['tag']
     tags = []
     tags.append(tag)
-    #userid = request.form['userID']
-    userid = 25
+    userid = request.form['prompt']
     mongoFunctions.update_tags(userid, tags, 1)
-    return render_template('stumbl.html', url = url, tag = tag)
+    return render_template('stumbl.html', url = url, tag = tag, user = userid)
 
 @app.route('/dislike', methods=['POST', 'GET'])
 def dislike():
     url = request.form['url']
     #tumblr api call to get tags off of url
-    #userid = request.form['userID']
-    userid = 25
+    userid = request.form['prompt']
     tag = request.form['tag']
     tags = []
     tags.append(tag)
     mongoFunctions.update_tags(userid, tags, -1)
-    return render_template('stumbl.html', url = url, tag = tag)
+    return render_template('stumbl.html', url = url, tag = tag, user = userid)
 
 @app.route('/favorites', methods=['POST', 'GET'])
 def favorites():
     url = request.form['url']
-    #userid = request.form['userID']
+    userid = request.form['prompt']
     tag = request.form['tag']
-    userid = 25
     mongoFunctions.add_to_favorites(userid, url)
-    return render_template('stumbl.html', url = url, tag = tag)
+    return render_template('stumbl.html', url = url, tag = tag, user = userid)
 
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT",5000))
