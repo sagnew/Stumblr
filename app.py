@@ -44,8 +44,9 @@ def like():
     tags = []
     tags.append(tag)
     userid = request.form['prompt']
+    favList = mongoFunctions.get_favorites(userid)
     mongoFunctions.update_tags(userid, tags, 1)
-    return render_template('stumbl.html', url = url, tag = tag, user = userid)
+    return render_template('stumbl.html', url = url, tag = tag, user = userid, favorites = favList)
 
 @app.route('/dislike', methods=['POST', 'GET'])
 def dislike():
@@ -55,16 +56,18 @@ def dislike():
     tag = request.form['tag']
     tags = []
     tags.append(tag)
+    favList = mongoFunctions.get_favorites(userid)
     mongoFunctions.update_tags(userid, tags, -1)
-    return render_template('stumbl.html', url = url, tag = tag, user = userid)
+    return render_template('stumbl.html', url = url, tag = tag, user = userid, favorites = favList)
 
 @app.route('/favorites', methods=['POST', 'GET'])
 def favorites():
     url = request.form['url']
     userid = request.form['prompt']
     tag = request.form['tag']
+    favList = mongoFunctions.get_favorites(userid)
     mongoFunctions.add_to_favorites(userid, url)
-    return render_template('stumbl.html', url = url, tag = tag, user = userid)
+    return render_template('stumbl.html', url = url, tag = tag, user = userid, favorites = favList)
 
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT",5000))
