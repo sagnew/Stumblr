@@ -159,7 +159,7 @@ def getUrl(tags, userid):
     choice = random.choice(Urls)
     while choice in mongoFunctions.recently_visited(userid):
         choice = random.choice(Urls)
-        mongoFunctions.add_to_recently_visited(userid, choice)
+        #mongoFunctions.add_to_recently_visited(userid, choice)
     return choice, chosenTag
 
 # recursively removes the folder named userId

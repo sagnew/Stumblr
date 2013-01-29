@@ -14,15 +14,8 @@ $(document).ready(function(){
     }
 
     $('#view').on("click", function(){
-        if(hasBeenClicked){
-            $('#list').slideUp('slow');
-            $('#frame').slideDown('slow');
-            hasBeenClicked = false;
-        }else{
-            $('#frame').slideUp('slow');
-            $('#list').slideDown('slow');
-            hasBeenClicked = true;
-        }
+       $('#list').slideToggle('slow');
+       $('#frame').slideToggle('slow');
     });
 
 });
