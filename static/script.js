@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-    var hasBeenClicked = false;
-
     $('#prompt').hide();
     $('#frame').hide();
     $('#list').hide();
@@ -13,7 +11,7 @@ $(document).ready(function(){
         $('#frame').fadeIn('slow');
     }
 
-    $('#view').on("click", function(){
+    $('#view').click(function(){
        $('#list').slideToggle('slow');
        $('#frame').slideToggle('slow');
     });

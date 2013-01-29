@@ -29,11 +29,13 @@ def stumbl():
     except urllib2.HTTPError:
         tags = tags
 
+    favList = mongoFunctions.get_favorites(userid)
+
     mongoFunctions.insert_user(userid, tags)
     mongoFunctions.add_tags(userid, tags)
     url, tag = backend.getUrl(mongoFunctions.get_tags(userid), userid)
     mongoFunctions.add_to_recently_visited(userid, url)
-    return render_template('stumbl.html', url = url, tag = tag, user = userid)
+    return render_template('stumbl.html', url = url, tag = tag, user = userid, favorites = favList)
 
 @app.route('/like', methods=['POST', 'GET'])
 def like():

@@ -65,5 +65,8 @@ def update_tags(userID, tags, num):
     		incList.append(t)
     db.update({'userid':userID},val)
 
+def get_favorites(userid):
+    return db.find_one({"userid": userid})['favorites']
+
 def get_tags(userid):
     return db.find_one({'userid': userid})['tags']

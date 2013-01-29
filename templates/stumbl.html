@@ -46,8 +46,14 @@
                         >Enter tags, separated by commas</textarea>
                 </div>
                 <div id='list' class="hero-unit">
-                    <!-- <h3>{{ favorites }}</h3> -->
                     <h3>Favorites</h3>
+                    <h4>
+                        {% for fav in favorites %}
+                        <a href="{{ fav }}">{{ fav }}</a>
+                        <br>
+                        {% endfor %}
+                    </h4>
+
                 </div>
             </div>
 
