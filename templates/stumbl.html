@@ -27,6 +27,7 @@
                             <button class="btn btn-success" type='submit' id='like' onClick='document.pressed=this.value;' value='/like'>Like</button>
                             <button class="btn btn-danger" type='submit' id='dislike 'onClick='document.pressed=this.value;' value='dislike'>Dislike</button>
                             <button class="btn btn-inverse" type='submit' id='favorites' onClick='document.pressed=this.value;' value='/favorites'>Add to favorites</button>
+                            <button class="btn" type="button" id='view'>View Favorites</button>
                         </div>
                     </div>
 
@@ -43,6 +44,10 @@
                         onfocus="if (this.value==this.defaultValue) this.value = ''"
                         onblur="if (this.value=='') this.value = this.defaultValue"
                         >Enter tags, separated by commas</textarea>
+                </div>
+                <div id='list' class="hero-unit">
+                    <!-- <h3>{{ favorites }}</h3> -->
+                    <h3>Favorites</h3>
                 </div>
             </div>
 
