@@ -6,9 +6,10 @@ $(document).ready(function(){
 
     if($('#user').val() == ''){
         $('#prompt').slideDown('slow');
-        $('group').hide();
+        $('#group').fadeOut('slow');
     }else{
         $('#frame').fadeIn('slow');
+        $('#group').fadeIn('slow');
     }
 
     $('#view').click(function(){
