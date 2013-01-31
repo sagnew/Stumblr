@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-    alert('Fuck you');
-
     $('#prompt').hide();
     $('#frame').hide();
     $('#list').hide();
