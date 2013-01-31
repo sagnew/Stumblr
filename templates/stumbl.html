@@ -15,7 +15,6 @@
         {% block content %}
         <form name="form" method="POST" onSubmit='return submitForm();' action="/stumbl">
             <div class="container">
-                <header class="row">
                     <h1 id="banner">Stumblr!</h1>
                     <div class="btn-toolbar">
                         <div class="btn-group">
@@ -33,7 +32,6 @@
                     <input type='hidden' value = '{{ url }}' name='url'/>
                     <input type='hidden' value='{{ tag }}' name='tag'/>
                     <input type='hidden' value='{{ user }}' />
-                </header>
                 <div id='prompt' class="hero-unit">
                     <h2>What is your tumblr username?</h2>
                     <input type="text" name='prompt' value="{{ user }}" id='user'>
