@@ -25,6 +25,8 @@ $(document).ready(function(){
 
     $('.fav_icon').click(function(){
         $('#frame').attr("url", $(this).attr("href"));
+        $('#list').slideToggle('slow');
+        $('#frame').slideToggle('slow');
     });
 
 });
