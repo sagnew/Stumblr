@@ -136,6 +136,7 @@ def build_data():
 #Receives a python dict as input with weighted tags
 def getUrl(tags, userid):
     weightedList = []
+    recently_visited = mongoFunctions.recently_visited(userid)
     for tag in tags:
         x = 0
         while x < tags[tag]:
@@ -148,18 +149,18 @@ def getUrl(tags, userid):
         chosenTag = random.choice(weightedList)
 
     Urls = retrieveTagUrls(chosenTag)
-    x = 0
-    while len(Urls) <= 0:
-        x += 1
-        if x > 100:
-            Urls = ['http://tumblr.com']
-        Urls = retrieveTagUrls(random.choice(weightedList))
-
+    if len(Urls) <= 0:
+        Urls = ['http://tumblr.com']
 
     choice = random.choice(Urls)
-    while choice in mongoFunctions.recently_visited(userid):
+    x = 0
+    while choice in recently_visited:
         choice = random.choice(Urls)
-        #mongoFunctions.add_to_recently_visited(userid, choice)
+        x += 1
+        if x > 1000:
+            choice = "http://tumblr.com"
+            break
+    mongoFunctions.add_to_recently_visited(userid, choice)
     return choice, chosenTag
 
 # recursively removes the folder named userId
