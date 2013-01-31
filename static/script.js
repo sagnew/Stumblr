@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+    alert('Fuck you');
+
     $('#prompt').hide();
     $('#frame').hide();
     $('#list').hide();
@@ -14,7 +16,7 @@ $(document).ready(function(){
     }
 
     $('#favorite').click(function(){
-        $'#frame').fadeOut('slow');
+        $('#frame').fadeOut('slow');
         $('#add_to_favorites').fadeIn('slow');
     });
 
