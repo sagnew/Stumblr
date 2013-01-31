@@ -17,7 +17,7 @@ def insert_user(userID, tags):
     		"tags": tagdict,
     		"urls": {},
             "recently_visited": [],
-            "favorites": []
+            "favorites": {}
             }
     #only insert if the user is not already in the collection.
     if db.find({"userid": userID}).count() == 0:
@@ -46,10 +46,10 @@ def add_to_recently_visited(userid, site):
     recentSites.append(site)
     db.update({'userid': userid}, val)
 
-def add_to_favorites(userid, url):
+def add_to_favorites(userid, url, title):
     val = db.find_one({'userid': userid})
     favorites = val['favorites']
-    favorites.append(url)
+    favorites[title] = url
     db.update({'userid': userid}, val)
 
 def update_tags(userID, tags, num):
@@ -67,7 +67,7 @@ def get_favorites(userid):
     return db.find_one({"userid": userid})['favorites']
 
 def exists(userid):
-    return userid in db.find({"userid": userid})
+    return userid in db.find({"userid": userid})['userid']
 
 def get_tags(userid):
     return db.find_one({'userid': userid})['tags']

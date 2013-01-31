@@ -24,8 +24,8 @@
 
                         <div class="btn-group" id='group'>
                             <button class="btn btn-success" type='submit' id='like' onClick='document.pressed=this.value;' value='/like'>Like</button>
-                            <button class="btn btn-danger" type='submit' id='dislike 'onClick='document.pressed=this.value;' value='dislike'>Dislike</button>
-                            <button class="btn btn-inverse" type='submit' id='favorites' onClick='document.pressed=this.value;' value='/favorites'>Add to favorites</button>
+                            <button class="btn btn-danger" type='submit' id='dislike 'onClick='document.pressed=this.value;' value='/dislike'>Dislike</button>
+                            <button class="btn btn-inverse" type="button" id='favorites'>Add to favorites</button>
                             <button class="btn" type="button" id='view'>View Favorites</button>
                         </div>
                     </div>
@@ -44,11 +44,16 @@
                         onblur="if (this.value=='') this.value = this.defaultValue"
                         >Enter tags, separated by commas</textarea>
                 </div>
+                <div id="add_to_favorites" class="hero-unit">
+                    <h2>Save as:</h2>
+                    <input type="text" name='title'>
+                    <button class="btn btn-primary" type="submit" id="favoriteButton" onClick='document.pressed=this.value;' value='/favorites'>Add</button>
+                </div>
                 <div id='list' class="hero-unit">
                     <h3>Favorites</h3>
                     <h4>
-                        {% for fav in favorites %}
-                        <a href="{{ fav }}">{{ fav }}</a>
+                        {% for fav in favorites.keys() %}
+                        <a href="{{ favorites[fav] }}" class="fav_icon">{{ fav }}</a>
                         <br>
                         {% endfor %}
                     </h4>

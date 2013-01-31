@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def main_page():
-    return render_template('stumbl.html', user = '', tag = '', url='http://tumblr.com')
+    return render_template('stumbl.html', user = '', tag = '', url='http://tumblr.com', favorites = {})
 
 @app.route('/stumbl', methods=['POST', 'GET'])
 def stumbl():
@@ -29,15 +29,12 @@ def stumbl():
     except urllib2.HTTPError:
         tags = tags
 
-    if mongoFunctions.exists(userid):
-        favList = mongoFunctions.get_favorites(userid)
-    else:
-        favList = []
 
     mongoFunctions.insert_user(userid, tags)
     mongoFunctions.update_tags(userid, tags, 0)
     url, tag = backend.getUrl(mongoFunctions.get_tags(userid), userid)
     mongoFunctions.add_to_recently_visited(userid, url)
+    favList = mongoFunctions.get_favorites(userid)
     return render_template('stumbl.html', url = url, tag = tag, user = userid, favorites = favList)
 
 @app.route('/like', methods=['POST', 'GET'])
@@ -54,7 +51,6 @@ def like():
 @app.route('/dislike', methods=['POST', 'GET'])
 def dislike():
     url = request.form['url']
-    #tumblr api call to get tags off of url
     userid = request.form['prompt']
     tag = request.form['tag']
     tags = []
@@ -68,8 +64,9 @@ def favorites():
     url = request.form['url']
     userid = request.form['prompt']
     tag = request.form['tag']
+    title = request.form['title']
+    mongoFunctions.add_to_favorites(userid, url, title)
     favList = mongoFunctions.get_favorites(userid)
-    mongoFunctions.add_to_favorites(userid, url)
     return render_template('stumbl.html', url = url, tag = tag, user = userid, favorites = favList)
 
 if __name__ == '__main__':
