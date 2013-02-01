@@ -14,11 +14,12 @@ $(document).ready(function(){
     }
 
     $('#favorites').click(function(){
-        $('#frame').fadeOut('slow');
-        $('#add_to_favorites').fadeIn('slow');
+        $('#frame').fadeToggle('slow');
+        $('#add_to_favorites').fadeToggle('slow');
     });
 
     $('#view').click(function(){
+       $('#add_to_favorites').fadeOut('slow');
        $('#list').slideToggle('slow');
        $('#frame').slideToggle('slow');
     });
