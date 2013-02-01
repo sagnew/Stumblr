@@ -23,7 +23,7 @@ $(document).ready(function(){
        $('#frame').slideToggle('slow');
     });
 
-    $('.fav_icon').click(function(){
+    $('#favorites').click(function(){
         $('#frame').attr("url", $(this).attr("href"));
         $('#list').slideToggle('slow');
         $('#frame').slideToggle('slow');
