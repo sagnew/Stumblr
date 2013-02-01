@@ -13,7 +13,7 @@ $(document).ready(function(){
         $('#group').fadeIn('slow');
     }
 
-    $('#favorite').click(function(){
+    $('#favorites').click(function(){
         $('#frame').fadeOut('slow');
         $('#add_to_favorites').fadeIn('slow');
     });
@@ -23,8 +23,9 @@ $(document).ready(function(){
        $('#frame').slideToggle('slow');
     });
 
-    $('#favorites').click(function(){
-        $('#frame').attr("url", $(this).attr("href"));
+    $('.fav_icon').click(function(){
+        $(this).preventDefault();
+        $('#frame').attr("src", $(this).attr("href"));
         $('#list').slideToggle('slow');
         $('#frame').slideToggle('slow');
     });
