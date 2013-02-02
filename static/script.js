@@ -14,14 +14,15 @@ $(document).ready(function(){
     }
 
     $('#favorites').click(function(){
+        $('#list').fadeOut('slow');
         $('#frame').fadeToggle('slow');
         $('#add_to_favorites').fadeToggle('slow');
     });
 
     $('#view').click(function(){
-       $('#add_to_favorites').fadeOut('slow');
-       $('#list').slideToggle('slow');
-       $('#frame').slideToggle('slow');
+        $('#add_to_favorites').fadeOut('slow');
+        $('#list').slideToggle('slow');
+        $('#frame').slideToggle('slow');
     });
 
     $('.fav_icon').click(function(){
