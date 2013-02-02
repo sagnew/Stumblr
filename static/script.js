@@ -15,7 +15,7 @@ $(document).ready(function(){
 
     $('#favorites').click(function(){
         $('#list').fadeOut('slow');
-        $('#frame').fadeToggle('slow');
+        $('#frame').fadeOut('slow');
         $('#add_to_favorites').fadeToggle('slow');
     });
 
