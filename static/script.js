@@ -8,6 +8,7 @@ $(document).ready(function(){
     $user = $('#user');
     $favorites = $('#favorites');
     $fav_icon = $('.fav_icon');
+    $view = $('#view');
 
     $userPrompt.hide();
     $frame.hide();
