@@ -15,8 +15,8 @@ $(document).ready(function(){
 
     $('#favorites').click(function(){
         $('#list').fadeOut('slow');
-        $('#frame').fadeOut('slow');
-        $('#add_to_favorites').fadeToggle('slow');
+        $('#frame').slideToggle('slow');
+        $('#add_to_favorites').slideToggle('slow');
     });
 
     $('#view').click(function(){
@@ -28,8 +28,8 @@ $(document).ready(function(){
     $('.fav_icon').click(function(){
         $(this).preventDefault();
         $('#frame').attr("src", $(this).attr("href"));
-        $('#list').slideToggle('slow');
-        $('#frame').slideToggle('slow');
+        $('#list').slideUp('slow');
+        $('#frame').slideDown('slow');
     });
 
 });
