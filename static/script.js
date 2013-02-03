@@ -24,15 +24,40 @@ $(document).ready(function(){
     }
 
     $favorites.click(function(){
-        $list.fadeOut('slow');
-        $frame.slideToggle('slow');
-        $add_to_favorites.slideToggle('slow');
+        if($list.is(":visible")){
+            $list.fadeOut('slow');
+
+            if($frame.is(":visible")){
+                $frame.slideUp();
+                $add_to_favorites.slideDown('slow');
+            }else{
+                $add_to_favorites.slideUp('slow');
+                $frame.slideDowm('slow');
+            }
+
+        }else{
+            $frame.slideToggle('slow');
+            $add_to_favorites.slideToggle('slow');
+        }
     });
 
     $view.click(function(){
-        $add_to_favorites.fadeOut('slow');
-        $list.slideToggle('slow');
-        $frame.slideToggle('slow');
+
+        if($add_to_favorites.is(":visible")){
+            $add_to_favorites.fadeOut('slow');
+
+            if($frame.is(":visible")){
+                $frame.slideUp('slow');
+                $list.slideDown('slow');
+            }else{
+                $list.slideUp('slow');
+                $frame.slideDown('slow');
+            }
+
+        }else{
+            $frame.slideToggle('slow');
+            $list.slideToggle('slow');
+        }
     });
 
     $fav_icon.click(function(){
