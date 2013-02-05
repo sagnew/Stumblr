@@ -32,7 +32,7 @@ $(document).ready(function(){
                 $add_to_favorites.slideDown('slow');
             }else{
                 $add_to_favorites.slideUp('slow');
-                $frame.slideDowm('slow');
+                $frame.slideDown('slow');
             }
 
         }else{
