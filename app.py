@@ -22,6 +22,8 @@ def stumbl():
 
     if " separated by commas" in tags:
         tags = ['hacking']
+    for i in range(0,len(tags)):
+        tags[i] = tags[i].strip()
 
     try:
         for tag in backend.retrieveLikes(userid):
