@@ -31,8 +31,7 @@ $(document).ready(function(){
                 $frame.slideUp();
                 $add_to_favorites.slideDown('slow');
             }else{
-                $add_to_favorites.slideUp('slow');
-                $frame.slideDown('slow');
+                $add_to_favorites.slideDown('slow');
             }
 
         }else{
