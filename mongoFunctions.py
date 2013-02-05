@@ -31,13 +31,7 @@ def hastags(userid):
 def recently_visited(userid):
     val = db.find_one({'userid': userid})
     if len(val['recently_visited']) > 100:
-        x = 0
-        for item in val['recently_visited']:
-            del(val['recently_visited'])
-            x += 1
-            if x > 50:
-                break
-
+        val['recently_visited'] = []
     return val['recently_visited']
 
 def add_to_recently_visited(userid, site):
