@@ -49,8 +49,7 @@ $(document).ready(function(){
                 $frame.slideUp('slow');
                 $list.slideDown('slow');
             }else{
-                $list.slideUp('slow');
-                $frame.slideDown('slow');
+                $list.slideDown('slow');
             }
 
         }else{
