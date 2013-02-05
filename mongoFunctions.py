@@ -51,6 +51,9 @@ def update_tags(userID, tags, num):
     tagVals = val['tags']
 
     for t in tags:
+        if t == "invalid_tag":
+            del(tagVals[t])
+            continue
     	if t in tagVals.keys():
     	    tagVals[t] = tagVals[t] + num
     	else:

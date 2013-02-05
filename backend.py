@@ -134,7 +134,9 @@ def build_data():
 
 #Alternative to Ruell's function
 #Receives a python dict as input with weighted tags
-def getUrl(tags, userid):
+def getUrl(tags, userid, count=0):
+    if count > 100:
+        return random.choice(recently_visited(userid)), "invalid_tag"
     weightedList = []
     recently_visited = mongoFunctions.recently_visited(userid)
     for tag in tags:
@@ -157,9 +159,8 @@ def getUrl(tags, userid):
     while choice in recently_visited:
         choice = random.choice(Urls)
         x += 1
-        if x > 1000:
-            choice = "http://tumblr.com"
-            break
+        if x > 100:
+            return getURL(tags, userid, count + 1)
     mongoFunctions.add_to_recently_visited(userid, choice)
     return choice, chosenTag
 
