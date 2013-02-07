@@ -12,7 +12,7 @@ def insert_user(userID, tags):
     if tagdict == {}:
         tagdict['Hacking'] = 10
 
-    #Inserts a user's informat into the collection.
+    #Inserts a user's information into the collection.
     post = {"userid": userID,
     		"tags": tagdict,
     		"urls": {},

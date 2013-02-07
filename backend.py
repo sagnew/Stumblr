@@ -151,15 +151,18 @@ def getUrl(tags, userid, count=0):
         chosenTag = random.choice(weightedList)
 
     Urls = retrieveTagUrls(chosenTag)
-    if len(Urls) <= 0:
+    if len(Urls) == 0:
         Urls = ['http://tumblr.com']
 
     choice = random.choice(Urls)
+    Urls.remove(choice)
     x = 0
     while choice in recently_visited:
         choice = random.choice(Urls)
+        Urls.remove(choice)
         x += 1
         if x > 100:
+            #Try again
             return getURL(tags, userid, count + 1)
     mongoFunctions.add_to_recently_visited(userid, choice)
     return choice, chosenTag
