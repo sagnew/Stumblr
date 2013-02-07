@@ -14,7 +14,6 @@ $(document).ready(function(){
     $frame.hide();
     $list.hide();
     $add_to_favorites.hide();
-    $view.hide();
     $fav_icon.hide();
 
     if($user.val() == ''){
