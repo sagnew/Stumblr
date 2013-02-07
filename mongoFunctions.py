@@ -69,6 +69,8 @@ def update_tags(userID, tags, num):
     	    tagVals[t] = tagVals[t] + num
     	else:
             tagVals[t] = 1
+        if tagVals[t] <= 0:
+            tagVals[t] = 1
     db.update({'userid':userID},val)
 
 def get_favorites(userid):
