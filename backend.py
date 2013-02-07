@@ -164,7 +164,6 @@ def getUrl(tags, userid, count=0):
         if x > 100:
             #Try again
             return getURL(tags, userid, count + 1)
-    mongoFunctions.add_to_recently_visited(userid, choice)
     return choice, chosenTag
 
 # recursively removes the folder named userId
