@@ -47,6 +47,16 @@ def add_to_favorites(userid, url, title):
     favorites[title] = url
     db.update({'userid': userid}, val)
 
+def replace_tags(userid, tags):
+    """
+    In case I want to remove a tag from the db
+    This takes a list of tags, an replaces the tags in the db with this new list
+    """
+
+    val = db.find_one({'userid': userid})
+    val['tags'] = tags
+    db.update({'userid': userid}, val)
+
 def update_tags(userID, tags, num):
     val = db.find_one({'userid': userID})
     tagVals = val['tags']
