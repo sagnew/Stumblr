@@ -166,6 +166,8 @@ def getUrl(tags, userid, count=0):
         if x > 100:
             #Try again
             return getURL(tags, userid, count + 1)
+    if choice == 'http://tumblr.com':
+        return getUrl(tags, userid, count + 1)
     return choice, chosenTag
 
 # recursively removes the folder named userId
