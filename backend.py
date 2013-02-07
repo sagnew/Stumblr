@@ -160,6 +160,8 @@ def getUrl(tags, userid, count=0):
     Urls.remove(choice)
     x = 0
     while choice in recently_visited:
+        if len(Urls) == 0:
+            break
         choice = random.choice(Urls)
         Urls.remove(choice)
         x += 1
