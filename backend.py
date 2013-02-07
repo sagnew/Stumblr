@@ -152,7 +152,7 @@ def getUrl(tags, userid, count=0):
 
     Urls = retrieveTagUrls(chosenTag)
     if len(Urls) == 0:
-        tags.remove(chosenTag)
+        del tags[chosenTag]
         mongoFunctions.replace_tags(userid, tags)
         Urls = ['http://tumblr.com']
 
