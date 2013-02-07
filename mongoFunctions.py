@@ -32,6 +32,7 @@ def recently_visited(userid):
     val = db.find_one({'userid': userid})
     if len(val['recently_visited']) > 100:
         val['recently_visited'] = []
+    db.update({'userid': userid}, val)
     return val['recently_visited']
 
 def add_to_recently_visited(userid, site):
