@@ -20,7 +20,7 @@ def stumbl():
         return render_template('stumbl.html', user = '', tag = '', url='http://tumblr.com')
     tags = tags.split(',')
 
-    if " separated by commas" in tags:
+    if " separated by commas" in tags and len(mongoFunctions.get_tags(userid)) <= 1:
         tags = ['hacking']
     for i in range(0,len(tags)):
         tags[i] = tags[i].strip()

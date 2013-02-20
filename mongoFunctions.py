@@ -73,6 +73,9 @@ def update_tags(userID, tags, num):
             tagVals[t] = 1
     db.update({'userid':userID},val)
 
+def get_tags(userid):
+    return db.find_one({'userid': userid})['tags']
+
 def get_favorites(userid):
     return db.find_one({"userid": userid})['favorites']
 
