@@ -31,7 +31,6 @@ def stumbl():
     except urllib2.HTTPError:
         tags = tags
 
-
     mongoFunctions.insert_user(userid, tags)
     mongoFunctions.update_tags(userid, tags, 0)
     url, tag = backend.getUrl(mongoFunctions.get_tags(userid), userid)
