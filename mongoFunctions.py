@@ -14,14 +14,14 @@ def insert_user(userID, tags):
 
     #Inserts a user's information into the collection.
     post = {"userid": userID,
-    		"tags": tagdict,
-    		"urls": {},
+            "tags": tagdict,
+            "urls": {},
             "recently_visited": [],
             "favorites": {}
             }
     #only insert if the user is not already in the collection.
     if db.find({"userid": userID}).count() == 0:
-    	db.insert(post)
+        db.insert(post)
 
 def hastags(userid):
     val = db.find_one({'userid': userid})
@@ -65,9 +65,9 @@ def update_tags(userID, tags, num):
         if t == "invalid_tag":
             del(tagVals[t])
             continue
-    	if t in tagVals.keys():
-    	    tagVals[t] = tagVals[t] + num
-    	else:
+        if t in tagVals.keys():
+            tagVals[t] = tagVals[t] + num
+        else:
             tagVals[t] = 1
         if tagVals[t] <= 0:
             tagVals[t] = 1
