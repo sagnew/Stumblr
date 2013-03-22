@@ -60,7 +60,6 @@ $(document).ready(function(){
 
     $fav_icon.click(function(){
         $thisIcon = $(this);
-
         $thisIcon.preventDefault();
         $frame.attr("src", $thisIcon.attr("href"));
         $list.slideUp('slow');
