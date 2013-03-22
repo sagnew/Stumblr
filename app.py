@@ -71,5 +71,5 @@ def favorites():
     return render_template('stumbl.html', url = url, tag = tag, user = userid, favorites = favList)
 
 if __name__ == '__main__':
-	port = int(os.environ.get("PORT",5000))
-	app.run(host='0.0.0.0', port=port, debug=True)
+    port = int(os.environ.get("PORT",5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
