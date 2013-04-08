@@ -6,11 +6,14 @@ import os
 import sendgrid
 import mongoFunctions
 import urllib2
+
 app = Flask(__name__)
+
 
 @app.route('/')
 def main_page():
     return render_template('stumbl.html', user = '', tag = '', url='http://tumblr.com', favorites = {})
+
 
 @app.route('/stumbl', methods=['POST', 'GET'])
 def stumbl():
@@ -38,6 +41,7 @@ def stumbl():
     favList = mongoFunctions.get_favorites(userid)
     return render_template('stumbl.html', url = url, tag = tag, user = userid, favorites = favList)
 
+
 @app.route('/like', methods=['POST', 'GET'])
 def like():
     url = request.form['url']
@@ -49,6 +53,7 @@ def like():
     mongoFunctions.update_tags(userid, tags, 1)
     return render_template('stumbl.html', url = url, tag = tag, user = userid, favorites = favList)
 
+
 @app.route('/dislike', methods=['POST', 'GET'])
 def dislike():
     url = request.form['url']
@@ -59,6 +64,7 @@ def dislike():
     favList = mongoFunctions.get_favorites(userid)
     mongoFunctions.update_tags(userid, tags, -1)
     return render_template('stumbl.html', url = url, tag = tag, user = userid, favorites = favList)
+
 
 @app.route('/favorites', methods=['POST', 'GET'])
 def favorites():
