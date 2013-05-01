@@ -20,7 +20,7 @@ def stumbl():
     userid = request.form['prompt']
     tags = request.form['interests']
     if userid == '':
-        return render_template('stumbl.html', user = '', tag = '', url='http://tumblr.com')
+        return render_template('index.html', user = '', tag = '', url='http://tumblr.com')
     tags = tags.split(',')
 
     if " separated by commas" in tags and len(mongoFunctions.get_tags(userid)) <= 1:
